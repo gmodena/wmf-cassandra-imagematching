@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    restart: always
+    environment:
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=1024M
+    volumes:
+      - ./cassandra_storage:/var/lib/cassandra
+    ports:
+      - 7000:7000
+      - 9042:9042
+  cassandra-load-imagerec:
+    container_name: cassandra-load-imagerec
+    image: cassandra:latest
+    environment:
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=1024M
+    depends_on:
+      - cassandra
+    volumes:
+      - ./ddl/imagerec.cql:/imagerec.cql:ro
+      - ./imagerec_prod:/imagerec_prod:ro
+    command: /bin/bash -c "sleep 60 && cqlsh cassandra -f /imagerec.cql"
+
