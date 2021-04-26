@@ -17,5 +17,4 @@ CREATE TABLE imagerec.matches (
 );
 
 COPY imagerec.matches(page_id, page_title, image_id, confidence_rating, source, dataset_id, creation_time, wiki, found_on)
-    FROM 'imagerec_prod/matches.tsv'
-    WITH HEADER=true AND DELIMITER='\t' AND NULL='';
+    FROM 'imagerec_prod/matches.tsv' WITH DELIMITER='\t' AND ERRFILE='/ingestion_status/import_imagerec_matches.err';
