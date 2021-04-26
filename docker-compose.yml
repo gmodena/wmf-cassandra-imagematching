@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       - HEAP_NEWSIZE=128M
-      - MAX_HEAP_SIZE=1024M
+      - MAX_HEAP_SIZE=2048M
     volumes:
       - ./cassandra_storage:/var/lib/cassandra
     ports:
@@ -17,11 +17,13 @@ services:
     image: cassandra:latest
     environment:
       - HEAP_NEWSIZE=128M
-      - MAX_HEAP_SIZE=1024M
+      - MAX_HEAP_SIZE=2048M
     depends_on:
       - cassandra
     volumes:
+      - ./config/cqlshrc:/cqlshrc
       - ./ddl/imagerec.cql:/imagerec.cql:ro
       - ./imagerec_prod:/imagerec_prod:ro
-    command: /bin/bash -c "sleep 60 && cqlsh cassandra -f /imagerec.cql"
+      - ./ingestion_status:/ingestion_status:rw
+    command: /bin/bash -c "sleep 60 && cqlsh cassandra --cqlshrc /cqlshrc -f /imagerec.cql"
 
