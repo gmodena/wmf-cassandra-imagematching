@@ -21,3 +21,5 @@ and shuffles records. Output will be available under `imagerec_prod`.
 $ docker-compose <up|down> [--build] cassandra-load-imagerec
 ```
 
+Rows not imported will be stored under `ingestion_status/import_imagerec_matches.err`.
+
