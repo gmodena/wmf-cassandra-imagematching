@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS matches;
+CREATE TABLE matches(page_id INTEGER,
+               page_title TEXT,
+               image_id TEXT,
+               confidence_rating TEXT,
+               source TEXT,
+               dataset_id TEXT,
+               insertion_ts REAL,
+               wiki TEXT,
+               found_on TEXT);
+UPDATE matches SET image_id = NULL WHERE image_id = '';
+UPDATE matches SET confidence_rating = NULL WHERE confidence_rating = '';
+UPDATE matches SET source = NULL WHERE source = '';
+UPDATE matches SET found_on = NULL WHERE found_on = '';
+
+
+DROP INDEX IF EXISTS matches_wiki_page_id;
+CREATE INDEX matches_wiki_page_id ON matches(wiki, page_id);
+
+.mode ascii
+.separator "\t" "\n"
+.timer on
+.import imagerec_prod/matches.tsv matches
+

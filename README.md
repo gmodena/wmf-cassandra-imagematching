@@ -23,3 +23,9 @@ $ docker-compose <up|down> [--build] cassandra-load-imagerec
 
 Rows not imported will be stored under `ingestion_status/import_imagerec_matches.err`.
 
+
+# Other targets
+Run
+`make sqlite` 
+
+to load IMA data into a sqlite database under `imagerec_prod/matches.db`.

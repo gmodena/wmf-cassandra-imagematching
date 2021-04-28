@@ -11,5 +11,8 @@ data:	download
 	tar xvjf ${dataset_archive} -C ${dataset}
 	cat ${dataset}/prod* | shuf > ${dataset}/matches.tsv
 	rm ${dataset}/prod*
+sqlite: 
+	test -d ${dataset} || make data
+	sqlite3 < ddl/imagerec.sqlite ${dataset}/imagerec.db
 clean:
 	rm -r ${dataset} ${dataset_archive}
