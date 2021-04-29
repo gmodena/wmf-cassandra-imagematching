@@ -6,6 +6,9 @@ A Docker Compose configuration for testing/developing Cassandra ingestion of IMA
 You will need Docker Engine and Docker Compose. On non-linux systems, you'll need to install
 `coreutils`. The latter is needed to satisfy a dependency on `shuf`.
 
+This setup is memory hungry. When running on Docker Desktop (macOS or Windows), we recommend to [allocate 
+4GB or memory to the docker VM](https://docs.docker.com/docker-for-mac/) for things to work properly. 
+
 # Data preparation
 
 Run
