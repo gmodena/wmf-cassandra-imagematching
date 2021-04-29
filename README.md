@@ -57,7 +57,6 @@ cqlsh> use imagerec;
 cqlsh:imagerec> select count(*) from matches;
 
  count
---------
  299998
 
 (1 rows)
