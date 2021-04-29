@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   cassandra:
     image: cassandra:latest
@@ -26,4 +25,11 @@ services:
       - ./imagerec_prod:/imagerec_prod:ro
       - ./ingestion_status:/ingestion_status:rw
     command: /bin/bash -c "sleep 60 && cqlsh cassandra --cqlshrc /cqlshrc -f /imagerec.cql"
-
+  sqlite:
+    container_name: sqlite
+    build:
+      context: .
+      dockerfile: Dockerfile.sqlite
+    volumes:
+      - ./imagerec_prod:/imagerec_prod:rw
+      - ./ddl/imagerec.sqlite:/imagerec.sqlite:ro
