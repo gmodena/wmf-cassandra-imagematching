@@ -13,10 +13,10 @@ data:	download
 	rm ${dataset}/prod*
 sqlite: 
 	test -d ${dataset} || make data
-	docker-compose run sqlite /bin/bash -c "sqlite3 < /imagerec.sqlite /imagerec_prod/imagerec.db"
+	docker-compose run sqlite /bin/bash -c "sleep 60 && cqlsh cassandra --cqlshrc /cqlshrc -f /imagerec.cql"
 cassandra: 
 	test -d ${dataset} || make data
-	docker-compose up cassandra-load-imagerec
+	docker-compose run cassandra-load-imagerec /bin/bash -c "sleep 60 && cqlsh cassandra --cqlshrc /cqlshrc -f /imagerec.cql"
 
 clean:
 	rm -r ${dataset} ${dataset_archive}
