@@ -25,7 +25,7 @@ $ make cassandra
 Uner the hood, this command will spin up a single node Cassandra cluster via `docker-compose`. Rows not imported will be stored 
 under `ingestion_status/import_imagerec_matches.err`.
 
-## Limitation
+## Limitations
 This command uses `cqlsh` to load data in Cassandra, which is an inefficient method for large datasets. To keep things reproducible,
 the `COPY` command is limited to loading at most `300000` rows. This value can be tweaked by setting `MAXROWS` in `ddl/imagerec.cql` accordingly.
 
