@@ -31,10 +31,7 @@ the `COPY` command is limited to loading at most `300000` rows. This value can b
 
 # Accessing Cassandra
 
-The dataset will be available in a container that exposes the following port to its host
-```
-7000-7001/tcp, 7199/tcp, 9042/tcp, 9160/tcp 
-```.
+The dataset will be available in a container that exposes the following port to its host: `7000-7001/tcp`, `7199/tcp`, `9042/tcp`, `9160/tcp`.
 
 You can access the database over the network using any Cassandra Driver or `cqlsh`.
 
