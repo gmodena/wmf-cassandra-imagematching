@@ -13,8 +13,8 @@ CREATE TABLE imagerec.matches (
     creation_time FLOAT,
     wiki TEXT,
     found_on TEXT,
-    PRIMARY KEY((wiki, page_id), image_id)
+    PRIMARY KEY(wiki, page_id)
 );
 
 COPY imagerec.matches(page_id, page_title, image_id, confidence_rating, source, dataset_id, creation_time, wiki, found_on)
-    FROM 'imagerec_prod/matches.tsv' WITH DELIMITER='\t' AND ERRFILE='/ingestion_status/import_imagerec_matches.err';
+    FROM 'imagerec_prod/matches.tsv' WITH DELIMITER='\t' AND NULL='' AND ERRFILE='/ingestion_status/import_imagerec_matches.err' AND MAXROWS=300000;
