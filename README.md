@@ -62,6 +62,11 @@ Warnings :
 Aggregation query used without partition key
 ```
 
+## CQL Driver
+
+Cassandra offers client API in a number of languages.
+`client-example` contains examples of basic lookup and Json SerDe with `golang` and the [gocl](https://github.com/gocql/gocql) driver.
+
 # Other targets
 Run
 `make sqlite` 
